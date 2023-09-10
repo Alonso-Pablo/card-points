@@ -1,0 +1,5 @@
+# Use an official Redis runtime as a parent image
+FROM redis:latest
+
+# Expose Redis port (default is 6379)
+EXPOSE 6379

@@ -1,0 +1,23 @@
+<div>
+  <h2>Bienvenido al Hall</h2>
+  <h3>{{username}}</h3>
+</div>
+
+<div>
+  <label for="username">Modifique su nombre de usuario:</label>
+  <input id="username" [(ngModel)]="username" [placeholder]="username">
+  <button (click)="sendUsername()">Modificar nombre</button>
+</div>
+
+<div>
+  <div>
+    <p>Puedes crear un nuevo Room</p>
+    <button (click)="createNewRoom()">Crear Nuevo Room</button>
+  </div>
+
+  <div *ngIf="isAbleToJoinARoom">
+    <p>O unirte a uno existente</p>
+    <input [(ngModel)]="roomId" placeholder="Ingrese el Room ID">
+    <button (click)="joinRoom()">Unirse al Room</button>
+  </div>
+</div>

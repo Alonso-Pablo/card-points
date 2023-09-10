@@ -1,0 +1,50 @@
+<!-- room.component.html -->
+<div *ngIf="room.id">
+  <h2>Bienvenido a la sala con Room ID: {{ room.id }}</h2>
+  <p>Tu username: {{ username }}</p>
+
+  <h2>Estado de votacion: <span>{{room.votingStatus}}</span></h2>
+
+  <h2>Usuarios en esta sala:</h2>
+  <ul>
+    <li *ngFor="let user of room.users">
+      id: {{ user.id }}; usuario: {{ user.username }};
+      <span *ngIf="!!user.votedCardId">voted</span>
+    </li>
+  </ul>
+
+  <h2>Cartas:</h2>
+  <div *ngIf="room.id">
+    <ul *ngFor="let card of room.cards">
+      <li>
+        <button (click)="sendVotedCard(card.id)">
+          {{card.value}}
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="room.votingStatus === 'VOTING'">
+  <h2>Mostrar resultados</h2>
+  <button (click)="sendShowResult(room.id)">¡Finalizar votación!</button>
+</div>
+
+<div *ngIf="room.votingStatus === 'SHOWING'">
+  <h2>Resultado de la votacion:
+    <ul>
+      <li *ngFor="let cardVoted of room.votingResults">
+        Carta: {{ room.cards[+cardVoted.cardId].value }}; Votos: {{ cardVoted.votes }}
+      </li>
+    </ul>
+  </h2>
+  <h2>Reiniciar votación</h2>
+  <button (click)="sendRestartResult(room.id)">¡Empezar una nueva votación!</button>
+</div>
+
+
+
+<div *ngIf="!room.id">
+  <h2>Cargando...</h2>
+  <!-- O puedes mostrar un mensaje de error si no se proporcionó un roomId válido -->
+</div>

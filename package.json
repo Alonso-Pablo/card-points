@@ -1,0 +1,14 @@
+{
+  "name": "card-points",
+  "private": false,
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ],
+  "scripts": {
+    "install": "npm install --workspaces",
+    "start": "npm run frontend:serve & npm run backend:serve",
+    "frontend": "cd apps/frontend && npm run frontend",
+    "backend": "cd apps/backend && npm run backend"
+  }
+}
